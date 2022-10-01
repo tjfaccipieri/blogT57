@@ -1,0 +1,11 @@
+.bg-login{
+  min-height: 100vh;
+  background-image: url('https://i.imgur.com/TexZbAD.jpg');
+  width: 100%;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.text-decoration-none {
+  text-decoration: none;
+}

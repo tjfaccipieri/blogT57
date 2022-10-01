@@ -6,7 +6,9 @@ import LinkedInIcon from '@material-ui/icons/LinkedIn';
 
 import purple from '@material-ui/core/colors/purple';
 
-const roxin = purple[500];
+import './Footer.css'
+
+const roxin = purple[300];
 
 function Footer() {
   return (
@@ -18,7 +20,7 @@ function Footer() {
         alignItems="center"
       >
         <Grid alignItems="center" item xs={12}>
-          <Box style={{ backgroundColor: roxin, height: '120px' }}>
+          <Box style={{backgroundColor: roxin}}>
             <Box
               paddingTop={1}
               display="flex"
@@ -64,7 +66,7 @@ function Footer() {
                 gutterBottom
                 style={{ color: 'white' }}
               >
-                © 2020 Copyright:
+                © 2022 Copyright:
               </Typography>
             </Box>
             <Box>

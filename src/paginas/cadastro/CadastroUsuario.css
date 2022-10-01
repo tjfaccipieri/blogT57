@@ -1,0 +1,7 @@
+.bg-cadastro {
+  min-height: 100vh;
+  background-image: url('https://i.imgur.com/c2Szk3h.jpg');
+  width: 100%;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
