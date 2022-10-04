@@ -1,10 +1,44 @@
 import { Typography, Button } from '@material-ui/core';
 import { Box, Grid, TextField } from '@mui/material';
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React, { ChangeEvent, useEffect, useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import useLocalStorage from 'react-use-localstorage';
+import UsuarioLogin from '../../model/UsuarioLogin';
+import { api } from '../../services/Service';
 import './Login.css';
 
 function Login() {
+  let navigate = useNavigate()
+  const [token, setToken] = useLocalStorage('token')
+  const [userLogin, setUserLogin] = useState<UsuarioLogin>({
+    id: 0,
+    nome: '',
+    usuario: '',
+    senha: '',
+    foto: '',
+    token: '',
+  });
+
+  function updateModel(event: ChangeEvent<HTMLInputElement>){
+    setUserLogin({
+      ...userLogin,
+      [event.target.name]: event.target.value
+    })
+
+  }
+
+  async function conectar(event: ChangeEvent<HTMLFormElement>){
+    event.preventDefault()
+    const resposta = await api.post('usuarios/logar', userLogin)
+    setToken(resposta.data.token)
+  }
+
+  useEffect(() => {
+    if(token !== '') {
+      navigate('/home')
+    }
+  }, [token])
+
   return (
     <>
       <Grid
@@ -15,38 +49,51 @@ function Login() {
       >
         <Grid item xs={6} alignItems="center" justifyContent="center">
           <Box paddingX={20}>
-            <form>
-              <Typography variant="h2" align='center'>Entrar</Typography>
+            <form onSubmit={conectar}>
+              <Typography variant="h2" align="center">
+                Entrar
+              </Typography>
 
               <TextField
+                onChange={(event: ChangeEvent<HTMLInputElement>) => updateModel(event)}
+                value={userLogin.usuario}
                 id="usuario"
-                label="Usuario"
+                name="usuario"
+                label="Usuário"
                 variant="outlined"
                 fullWidth
                 margin="normal"
               />
               <TextField
+              onChange={(event: ChangeEvent<HTMLInputElement>) => updateModel(event)}
+              value={userLogin.senha}
                 id="senha"
+                name="senha"
                 label="Senha"
                 variant="outlined"
+                type="password"
                 fullWidth
                 margin="normal"
               />
-              <Box display='flex' justifyContent='center' marginTop={2}>
-                <Link to='/home' className='text-decoration-none'>
+              <Box display="flex" justifyContent="center" marginTop={2}>
+                
                   <Button type="submit" variant="contained" color="primary">
                     Entrar
                   </Button>
-                </Link>
+                
               </Box>
             </form>
 
-            <Box display="flex" justifyContent='center' marginTop={2}>
-            <Box marginRight={1}>
-              <Typography variant='subtitle1'>Ainda não tem uma conta?</Typography>
-            </Box>
-              <Link to='/cadastro'>
-                <Typography variant='subtitle1' align='center'>Cadastre-se</Typography>
+            <Box display="flex" justifyContent="center" marginTop={2}>
+              <Box marginRight={1}>
+                <Typography variant="subtitle1">
+                  Ainda não tem uma conta?
+                </Typography>
+              </Box>
+              <Link to="/cadastro">
+                <Typography variant="subtitle1" align="center">
+                  Cadastre-se
+                </Typography>
               </Link>
             </Box>
           </Box>

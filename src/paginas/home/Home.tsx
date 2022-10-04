@@ -1,11 +1,9 @@
 import { Box, Button, Grid, Typography } from '@mui/material';
 import './Home.css';
 
-// import purple from '@material-ui/core/colors/purple';
-
-// const roxin = purple[500]
 
 function Home() {
+
   return (
     <>
       <Grid container direction="row" justifyContent="center" alignItems="center" style={{ backgroundColor: "#3F51B5" }}>
@@ -19,6 +17,7 @@ function Home() {
             </Box>
             <Button variant="outlined" style={{ borderColor: "white", backgroundColor: "#3F51B5", color: "white" }}>Ver Postagens</Button>
           </Box>
+
         </Grid>
         <Grid item xs={6} >
           <img src="https://i.imgur.com/H88yIo2.png" alt="" width="500px" height="500px" />
