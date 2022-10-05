@@ -4,12 +4,12 @@ import React, { ChangeEvent, useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import useLocalStorage from 'react-use-localstorage';
 import UsuarioLogin from '../../model/UsuarioLogin';
-import { api } from '../../services/Service';
+import { api, login } from '../../services/Service';
 import './Login.css';
 
 function Login() {
-  let navigate = useNavigate()
-  const [token, setToken] = useLocalStorage('token')
+  let navigate = useNavigate();
+  const [token, setToken] = useLocalStorage('token');
   const [userLogin, setUserLogin] = useState<UsuarioLogin>({
     id: 0,
     nome: '',
@@ -19,25 +19,27 @@ function Login() {
     token: '',
   });
 
-  function updateModel(event: ChangeEvent<HTMLInputElement>){
+  function updateModel(event: ChangeEvent<HTMLInputElement>) {
     setUserLogin({
       ...userLogin,
-      [event.target.name]: event.target.value
-    })
-
+      [event.target.name]: event.target.value,
+    });
   }
 
-  async function conectar(event: ChangeEvent<HTMLFormElement>){
-    event.preventDefault()
-    const resposta = await api.post('usuarios/logar', userLogin)
-    setToken(resposta.data.token)
+  async function conectar(event: ChangeEvent<HTMLFormElement>) {
+    event.preventDefault();
+    try {
+      await login('usuarios/logar', userLogin, setToken);
+    } catch (error) {
+      alert('Dados de usuário inválidos, Tente novamente.')
+    }
   }
 
   useEffect(() => {
-    if(token !== '') {
-      navigate('/home')
+    if (token !== '') {
+      navigate('/home');
     }
-  }, [token])
+  }, [token]);
 
   return (
     <>
@@ -55,7 +57,9 @@ function Login() {
               </Typography>
 
               <TextField
-                onChange={(event: ChangeEvent<HTMLInputElement>) => updateModel(event)}
+                onChange={(event: ChangeEvent<HTMLInputElement>) =>
+                  updateModel(event)
+                }
                 value={userLogin.usuario}
                 id="usuario"
                 name="usuario"
@@ -65,8 +69,10 @@ function Login() {
                 margin="normal"
               />
               <TextField
-              onChange={(event: ChangeEvent<HTMLInputElement>) => updateModel(event)}
-              value={userLogin.senha}
+                onChange={(event: ChangeEvent<HTMLInputElement>) =>
+                  updateModel(event)
+                }
+                value={userLogin.senha}
                 id="senha"
                 name="senha"
                 label="Senha"
@@ -76,11 +82,9 @@ function Login() {
                 margin="normal"
               />
               <Box display="flex" justifyContent="center" marginTop={2}>
-                
-                  <Button type="submit" variant="contained" color="primary">
-                    Entrar
-                  </Button>
-                
+                <Button type="submit" variant="contained" color="primary">
+                  Entrar
+                </Button>
               </Box>
             </form>
 
