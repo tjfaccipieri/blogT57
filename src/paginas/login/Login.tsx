@@ -64,9 +64,9 @@ function Login() {
                 id="usuario"
                 name="usuario"
                 label="Usuário"
-                variant="outlined"
                 fullWidth
                 margin="normal"
+                variant='outlined'
               />
               <TextField
                 onChange={(event: ChangeEvent<HTMLInputElement>) =>

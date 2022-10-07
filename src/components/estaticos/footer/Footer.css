@@ -1,0 +1,29 @@
+.cor {
+  background-color: azure !important;
+}
+
+.fundo-footer {
+  background-color: #303F9F;
+  /* height: 60px */
+  margin: 0;
+}
+
+.redesSociais {
+  font-size: 3rem !important;
+  color: #fff
+}
+
+svg {
+  filter: drop-shadow(3px 5px 2px rgba(175, 165, 165, 0.4));
+  /* background-image: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285AEB 90%) */
+}
+
+/* 
+.insta:hover {
+  font-size: 40px;
+  background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285AEB 90%);
+  -webkit-background-clip: text;
+  background-clip: text !important;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+} */

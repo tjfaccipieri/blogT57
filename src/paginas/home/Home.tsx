@@ -1,4 +1,5 @@
 import { Box, Button, Grid, Typography } from '@mui/material';
+import TabPostagens from '../../components/postagens/tabPostagens/TabPostagens';
 import './Home.css';
 
 
@@ -24,6 +25,10 @@ function Home() {
         </Grid>
         <Grid xs={12} style={{ backgroundColor: "white" }}>
         </Grid>
+      </Grid>
+
+      <Grid container justifyContent='center' alignItems='center'>
+        <TabPostagens />
       </Grid>
     </>
   );

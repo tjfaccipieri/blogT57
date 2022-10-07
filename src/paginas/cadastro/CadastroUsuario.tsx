@@ -141,7 +141,7 @@ function CadastroUsuario() {
                 }
               />
 
-              <Box display="flex" justifyContent="space-around" marginTop={2}>
+              <Box display="flex" justifyContent="space-around" marginTop={2} >
                 <Link to="/login" className="text-decoration-none">
                   <Button type="submit" variant="contained" color="secondary">
                     Cancelar

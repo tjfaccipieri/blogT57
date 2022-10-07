@@ -3,12 +3,8 @@ import { Box, Grid, Typography } from '@mui/material';
 import InstagramIcon from '@material-ui/icons/Instagram';
 import FacebookIcon from '@material-ui/icons/Facebook';
 import LinkedInIcon from '@material-ui/icons/LinkedIn';
-
-import purple from '@material-ui/core/colors/purple';
-
 import './Footer.css'
 
-const roxin = purple[300];
 
 function Footer() {
   return (
@@ -20,7 +16,7 @@ function Footer() {
         alignItems="center"
       >
         <Grid alignItems="center" item xs={12}>
-          <Box style={{backgroundColor: roxin}}>
+          <Box className='fundo-footer'>
             <Box
               paddingTop={1}
               display="flex"
@@ -42,23 +38,25 @@ function Footer() {
                 target="_blank"
                 rel="noreferrer"
               >
-                <FacebookIcon style={{ fontSize: 60, color: 'white' }} />
+                <FacebookIcon className='redesSociais'/>
               </a>
               <a
                 href="https://www.instagram.com/generationbrasil/"
                 target="_blank"
+                rel="noreferrer"
               >
-                <InstagramIcon style={{ fontSize: 60, color: 'white' }} />
+                <InstagramIcon className='redesSociais insta ' />
               </a>
               <a
                 href="https://www.linkedin.com/school/generationbrasil/"
                 target="_blank"
+                rel="noreferrer"
               >
-                <LinkedInIcon style={{ fontSize: 60, color: 'white' }} />
+                <LinkedInIcon className='redesSociais' />
               </a>
             </Box>
           </Box>
-          <Box style={{ backgroundColor: '#303F9F', height: '60px' }}>
+          <Box className='fundo-footer'>
             <Box paddingTop={1}>
               <Typography
                 variant="subtitle2"
@@ -73,7 +71,6 @@ function Footer() {
               <a target="_blank" href="https://brasil.generation.org">
                 <Typography
                   variant="subtitle2"
-                  gutterBottom
                   style={{ color: 'white' }}
                   align="center"
                 >
