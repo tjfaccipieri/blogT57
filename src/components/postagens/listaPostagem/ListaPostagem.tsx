@@ -60,7 +60,7 @@ function ListaPostagem() {
                   </Button>
                 </Box>
               </Link>
-              <Link to="" className="text-decoration-none">
+              <Link to={`/apagarPost/${postagem.id}`} className="text-decoration-none">
                 <Box mx={1}>
                   <Button variant="contained" size='small' color="error">
                     deletar

@@ -10,6 +10,7 @@ import ListaTemas from './components/temas/listaTemas/ListaTemas';
 import CadastroUsuario from './paginas/cadastro/CadastroUsuario';
 import Home from './paginas/home/Home';
 import Login from './paginas/login/Login';
+import DeletarPostagem from './components/postagens/deletarPostagem/DeletarPostagem';
 
 function App() {
   return (
@@ -32,6 +33,7 @@ function App() {
 
             <Route path="/posts" element={<ListaPostagem />} />
             <Route path="/editarPost/:id" element={<CadastroPostagem />} />
+            <Route path="/apagarPost/:id" element={<DeletarPostagem />} />
           </Routes>
         </div>
         

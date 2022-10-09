@@ -2,3 +2,7 @@
   text-decoration: none;
   color: #fff;
 }
+
+.cursor {
+  cursor: pointer;
+}

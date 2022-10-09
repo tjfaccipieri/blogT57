@@ -1,4 +1,5 @@
 import { Box, Button, Grid, Typography } from '@mui/material';
+import ModalPostagem from '../../components/postagens/modalPostagem/ModalPostagem';
 import TabPostagens from '../../components/postagens/tabPostagens/TabPostagens';
 import './Home.css';
 
@@ -15,6 +16,7 @@ function Home() {
           </Box>
           <Box display="flex" justifyContent="center">
             <Box marginRight={1}>
+              <ModalPostagem />
             </Box>
             <Button variant="outlined" style={{ borderColor: "white", backgroundColor: "#3F51B5", color: "white" }}>Ver Postagens</Button>
           </Box>
