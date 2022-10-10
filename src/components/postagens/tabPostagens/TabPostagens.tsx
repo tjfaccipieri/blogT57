@@ -5,15 +5,15 @@ import ListaPostagem from '../listaPostagem/ListaPostagem';
 import './TabPostagens.css'
 
 function TabPostagens() {
-  const [value, setValue] = useState('1')
+  const [value, setValue] = useState("1")
     function handleChange(event: React.ChangeEvent<{}>, newValue: string){
         setValue(newValue);
     }
   return (
     <>
       <TabContext value={value}>
-        <AppBar position="static">
-          <Tabs centered indicatorColor="primary"  onChange={handleChange}>
+        <AppBar position="static" className='barra'>
+          <Tabs centered indicatorColor="primary" value={false} onChange={handleChange}>
             <Tab label="Todas as postagens" value="1" className='titulo-tab' />
             <Tab label="Sobre-nós" value="2" className='titulo-tab'  />
           </Tabs>

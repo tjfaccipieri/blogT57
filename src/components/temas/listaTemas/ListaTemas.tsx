@@ -48,7 +48,7 @@ function ListaTemas() {
       <Container>
         {/* mapeamento do array de temas, para recriar a estrutura inteira para cada tema existente */}
         {temas.map((tema) => (
-          <Box m={2}>
+          <Box m={2} key={tema.id}>
             <Card variant="outlined">
               <CardContent>
                 <Typography color="textSecondary" gutterBottom>

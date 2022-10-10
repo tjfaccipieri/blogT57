@@ -147,14 +147,12 @@ function CadastroPostagem() {
             fullWidth
           />
 
-          <FormControl variant='outlined'>
+          <FormControl fullWidth variant="standard">
             <InputLabel id="demo-simple-select-helper-label">Tema </InputLabel>
 
             <Select
               labelId="demo-simple-select-helper-label"
               id="demo-simple-select-helper"
-              fullWidth
-              
               onChange={(e) =>
                 buscaId(`/temas/${e.target.value}`, setTema, {
                   headers: {
@@ -164,11 +162,18 @@ function CadastroPostagem() {
               }
             >
               {temas.map((item) => (
-                <MenuItem value={item.id} style={{display: 'block'}}>{item.descricao}</MenuItem>
+                <MenuItem value={item.id} style={{ display: 'block' }}>
+                  {item.descricao}
+                </MenuItem>
               ))}
             </Select>
             <FormHelperText>Escolha um tema para a postagem</FormHelperText>
-            <Button type="submit" variant="contained" color="primary">
+            <Button
+              type="submit"
+              variant="contained"
+              color="primary"
+              disabled={tema.id === 0}
+            >
               Finalizar
             </Button>
           </FormControl>

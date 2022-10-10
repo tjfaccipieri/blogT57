@@ -11,6 +11,10 @@ function CadastroUsuario() {
 
   const [confirmarSenha, setConfirmarSenha] = useState<String>('');
 
+  const [cadastro, setCadastro] = useState(false)
+
+ 
+
   function confirmarSenhaHandle(event: ChangeEvent<HTMLInputElement>) {
     setConfirmarSenha(event.target.value);
   }
@@ -31,6 +35,12 @@ function CadastroUsuario() {
     senha: '',
     foto: '',
   });
+
+  useEffect(() => {
+    if(user.nome.length > 3 && user.usuario !== '' && user.senha.length >= 8 ) {
+      setCadastro(true)
+    }
+  }, [user])
 
   function updateModel(event: ChangeEvent<HTMLInputElement>) {
     setUser({
@@ -147,7 +157,7 @@ function CadastroUsuario() {
                     Cancelar
                   </Button>
                 </Link>
-                <Button type="submit" variant="contained" color="primary">
+                <Button type="submit" variant="contained" color="primary" disabled={!cadastro}>
                   Cadastrar
                 </Button>
               </Box>

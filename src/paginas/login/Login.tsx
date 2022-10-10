@@ -4,7 +4,7 @@ import React, { ChangeEvent, useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import useLocalStorage from 'react-use-localstorage';
 import UsuarioLogin from '../../model/UsuarioLogin';
-import { api, login } from '../../services/Service';
+import { login } from '../../services/Service';
 import './Login.css';
 
 function Login() {
@@ -25,6 +25,14 @@ function Login() {
       [event.target.name]: event.target.value,
     });
   }
+
+  useEffect(() => {
+    if(userLogin.usuario !== '' && userLogin.senha !== '' && userLogin.senha.length >= 8) {
+      setForm(true)
+    }
+  },[userLogin])
+
+  const [form, setForm] = useState(false)
 
   async function conectar(event: ChangeEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -82,7 +90,7 @@ function Login() {
                 margin="normal"
               />
               <Box display="flex" justifyContent="center" marginTop={2}>
-                <Button type="submit" variant="contained" color="primary">
+                <Button type="submit" variant="contained" color="primary" disabled={!form}>
                   Entrar
                 </Button>
               </Box>

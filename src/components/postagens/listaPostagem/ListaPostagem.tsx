@@ -34,7 +34,7 @@ function ListaPostagem() {
   return (
     <>
       {postagens.map(postagem => (
-        <Box m={2} >
+        <Box m={2} key={postagem.id} >
         <Card variant="outlined">
           <CardContent>
             <Typography color="textSecondary" gutterBottom>
@@ -62,7 +62,7 @@ function ListaPostagem() {
               </Link>
               <Link to={`/apagarPost/${postagem.id}`} className="text-decoration-none">
                 <Box mx={1}>
-                  <Button variant="contained" size='small' color="error">
+                  <Button variant="contained" size='small' color="secondary">
                     deletar
                   </Button>
                 </Box>
