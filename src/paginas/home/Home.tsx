@@ -1,10 +1,27 @@
 import { Box, Button, Grid, Typography } from '@mui/material';
+import { useEffect } from 'react';
+import { useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 import ModalPostagem from '../../components/postagens/modalPostagem/ModalPostagem';
 import TabPostagens from '../../components/postagens/tabPostagens/TabPostagens';
+import { TokenState } from '../../store/tokens/tokenReducer';
 import './Home.css';
 
 
 function Home() {
+
+  let navigate = useNavigate();
+  const token = useSelector<TokenState, TokenState["tokens"]>(
+    (state) => state.tokens
+  )
+
+  useEffect(() => {
+    if (token === '') {
+      alert('Ai não meu bom')
+      navigate('/login')
+    }
+  }, [token])
+
 
   return (
     <>

@@ -8,10 +8,12 @@ import {
   Typography,
 } from '@mui/material';
 import React, { useState, useEffect } from 'react';
+import { useSelector } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
 import useLocalStorage from 'react-use-localstorage';
 import Tema from '../../../model/Tema';
 import { busca } from '../../../services/Service';
+import { TokenState } from '../../../store/tokens/tokenReducer';
 
 function ListaTemas() {
   //trazer a função de navegação interna
@@ -21,7 +23,9 @@ function ListaTemas() {
   const [temas, setTemas] = useState<Tema[]>([]);
 
   // trazer o token do navegador para dentro do blog
-  const [token, setToken] = useLocalStorage('token');
+  const token = useSelector<TokenState, TokenState["tokens"]>(
+    (state) => state.tokens
+  )
 
   //verificar se a pessoa tem token, se não tiver, mandar pra login
   useEffect(() => {

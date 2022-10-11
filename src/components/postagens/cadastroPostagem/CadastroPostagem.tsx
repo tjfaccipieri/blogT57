@@ -10,11 +10,13 @@ import {
   Typography,
 } from '@mui/material';
 import React, { ChangeEvent, useEffect, useState } from 'react';
+import { useSelector } from 'react-redux';
 import { useNavigate, useParams } from 'react-router-dom';
-import useLocalStorage from 'react-use-localstorage';
 import Postagem from '../../../model/Postagem';
 import Tema from '../../../model/Tema';
+import Usuario from '../../../model/Usuario';
 import { busca, buscaId, post, put } from '../../../services/Service';
+import { TokenState } from '../../../store/tokens/tokenReducer';
 
 function CadastroPostagem() {
   let navigate = useNavigate();
@@ -23,12 +25,19 @@ function CadastroPostagem() {
 
   const [temas, setTemas] = useState<Tema[]>([]);
 
-  const [token, setToken] = useLocalStorage('token');
+  const token = useSelector<TokenState, TokenState["tokens"]>(
+    (state) => state.tokens
+  )
 
   const [tema, setTema] = useState<Tema>({
     id: 0,
     descricao: '',
   });
+
+  //Buscar o ID dentro do REDUX
+  const userId = useSelector<TokenState, TokenState['id']>(
+    (state) => state.id
+  )
 
   const [postagem, setPostagem] = useState<Postagem>({
     id: 0,
@@ -36,7 +45,17 @@ function CadastroPostagem() {
     texto: '',
     data: '',
     tema: null,
+    usuario: null //linha adicionada para inserir o usuário dono na postagem
   });
+
+  //State que vai controlar o usuário que será inserido na postagem
+  const [usuario, setUsuario] = useState<Usuario>({
+    id: +userId,
+    nome: '',
+    usuario: '',
+    senha: '',
+    foto: ''
+  })
 
   useEffect(() => {
     if (token === '') {
@@ -49,6 +68,7 @@ function CadastroPostagem() {
     setPostagem({
       ...postagem,
       tema: tema,
+      usuario: usuario //adicionar o usuário dentro da postagem que está sendo enviada para o backend
     });
   }, [tema]);
 

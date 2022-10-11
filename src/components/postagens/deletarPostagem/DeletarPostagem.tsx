@@ -15,13 +15,17 @@ import { buscaId, deleteId } from '../../../services/Service';
 
 import './DeletarPostagem.css';
 import Postagem from '../../../model/Postagem';
+import { useSelector } from 'react-redux';
+import { TokenState } from '../../../store/tokens/tokenReducer';
 
 function DeletarPostagem() {
   let history = useNavigate();
 
   const { id } = useParams<{ id: string }>();
 
-  const [token, setToken] = useLocalStorage('token');
+  const token = useSelector<TokenState, TokenState["tokens"]>(
+    (state) => state.tokens
+  )
 
   const [post, setPosts] = useState<Postagem>();
 

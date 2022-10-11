@@ -1,9 +1,10 @@
 import { Box, Button, Card, CardActions, CardContent, Typography } from '@mui/material'
 import React, {useState, useEffect} from 'react'
+import { useSelector } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom'
-import useLocalStorage from 'react-use-localstorage';
 import Postagem from '../../../model/Postagem';
 import { busca } from '../../../services/Service';
+import { TokenState } from '../../../store/tokens/tokenReducer';
 
 
 function ListaPostagem() {
@@ -12,7 +13,9 @@ function ListaPostagem() {
 
   const [postagens, setPostagens] = useState<Postagem[]>([])
 
-  const [token, setToken] = useLocalStorage('token')
+  const token = useSelector<TokenState, TokenState["tokens"]>(
+    (state) => state.tokens
+  )
 
   useEffect(() => {
     if (token === '') {
@@ -48,6 +51,9 @@ function ListaPostagem() {
             </Typography>
             <Typography variant="body2" component="p">
               {postagem.tema?.descricao}
+            </Typography>
+            <Typography variant="body2" component="p">
+              Postado por: {postagem.usuario?.nome}
             </Typography>
           </CardContent>
           <CardActions>

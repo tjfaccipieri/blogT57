@@ -9,9 +9,3 @@
 .text-decoration-none {
   text-decoration: none;
 }
-
-.input-login {
-  outline: 2px solid blue;
-  background-color: aquamarine;
-  color: red
-}
