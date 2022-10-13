@@ -5,6 +5,7 @@ import { useSelector } from 'react-redux';
 import Usuario from '../../model/Usuario';
 import { TokenState } from '../../store/tokens/tokenReducer';
 import { buscaId } from '../../services/Service';
+import './Perfil.css'
 
 function Perfil() {
 
@@ -37,22 +38,28 @@ function Perfil() {
   return (
     <>
       <Container>
-        <Grid container marginTop={5}>
-          <Grid xs={3} alignItems='center' justifyContent='center'>
-            <Avatar src={usuario.foto} alt="" style={{width: '15rem', height: '15rem', margin: '0 auto'}} />
+        <div className='perfilContainer'>
+          <Grid xs={3} alignItems='center' justifyContent='center' className='perfil'>
+            <img src={usuario.foto} alt="" className='imgPerfil' />
             <Typography variant='h5' align='center' >{usuario.nome}</Typography>
           </Grid>
-          <Grid xs={9} justifyContent='center'>
+          <Grid xs={9} justifyContent='center' className='perfil'>
             <Typography variant='h4' align='center'>Postagens de {usuario.nome}</Typography>
             Você tem um total de {usuario.postagem?.length} postagens feitas
 
+            <div className="postUser">
             {usuario.postagem?.map((post) => (
-              <p>{post.titulo}</p>
+              <div className="postPerfil">
+                <h3>{post.titulo}</h3>
+                <p>{post.texto}</p>
+                <strong>{post.tema?.descricao}</strong>
+              </div>
             ))}
+            </div>
 
 
           </Grid>
-        </Grid>
+        </div>
       </Container>
     </>
   );
