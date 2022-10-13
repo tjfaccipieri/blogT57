@@ -47,9 +47,15 @@ function Perfil() {
             <Typography variant='h4' align='center'>Postagens de {usuario.nome}</Typography>
             Você tem um total de {usuario.postagem?.length} postagens feitas
 
+            <div className="postUser">
             {usuario.postagem?.map((post) => (
-              <p>{post.titulo}</p>
+              <div className="postPerfil">
+                <h3>{post.titulo}</h3>
+                <p>{post.texto}</p>
+                <strong>{post.tema?.descricao}</strong>
+              </div>
             ))}
+            </div>
 
 
           </Grid>
