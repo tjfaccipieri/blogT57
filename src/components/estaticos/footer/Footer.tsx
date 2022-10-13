@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Box, Grid, Typography } from '@mui/material';
 import InstagramIcon from '@material-ui/icons/Instagram';
 import FacebookIcon from '@material-ui/icons/Facebook';
@@ -13,6 +13,8 @@ function Footer() {
   const token = useSelector<TokenState, TokenState["tokens"]>(
     (state) => state.tokens
   )
+
+  useEffect(()=>{console.log(token)}, [token])
 
   let footerContent
 
