@@ -49,9 +49,6 @@ function CadastroUsuario() {
     });
   }
 
-  //  == > comparação basica => 2 = '2'
-  //  === > comparação estrita => 2 != '2'
-
   async function cadastrar(event: ChangeEvent<HTMLFormElement>) {
     event.preventDefault();
     if (confirmarSenha === user.senha && user.senha.length >= 8) {
@@ -170,3 +167,21 @@ function CadastroUsuario() {
 }
 
 export default CadastroUsuario;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

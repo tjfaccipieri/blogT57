@@ -6,9 +6,10 @@
 }
 
 .perfil {
-  -webkit-box-shadow: 3px 3px 15px 1px rgba(0,0,0,0.4); 
-  box-shadow: 3px 3px 15px 1px rgba(0,0,0,0.4);
-  border-radius: 8px;
+  -webkit-box-shadow: 14px 15px 35px -6px rgba(212,11,212,0.54);
+  -moz-box-shadow: 14px 15px 35px -6px rgba(212,11,212,0.54);
+  box-shadow: 14px 15px 35px -6px rgba(212,11,212,0.54);
+  border-radius: 25% 0% 10% 25% / 63% 25% 25% 0%;
   padding: 1rem;
 }
 

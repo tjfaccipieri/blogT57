@@ -12,17 +12,25 @@ import { Link, useNavigate } from 'react-router-dom';
 import Postagem from '../../../model/Postagem';
 import { busca } from '../../../services/Service';
 import { TokenState } from '../../../store/tokens/tokenReducer';
+import './listaPostagem.css'
 
-function ListaPostagem() {
+function ListaPostagem(props: any) {
   let navigate = useNavigate();
 
-  const [postagens, setPostagens] = useState<Postagem[]>([]);
+  const [postagens, setPostagens] = useState<any[]>([]);
 
   const token = useSelector<TokenState, TokenState['tokens']>(
     (state) => state.tokens
   );
 
   const userId = useSelector<TokenState, TokenState['id']>((state) => state.id);
+
+  let filter = props.inputText
+
+    console.log()
+
+  
+
 
   useEffect(() => {
     if (token === '') {
@@ -43,9 +51,14 @@ function ListaPostagem() {
 
   return (
     <>
-      {postagens.map((postagem) => (
-        <Box m={2} key={postagem.id}>
-          <Card variant="outlined">
+    {postagens.length === 0 ? (<div className="spinner"></div>): (
+      postagens.filter((post) => {
+        return(
+          post.titulo.includes(filter)
+        )
+      }).map((postagem) => (
+        <Box marginX={20} m={2} key={postagem.id} className='boxPost' border={1} borderRadius={5} justifySelf='flex-start'>
+          <Card className='cardPost'>
             <CardContent>
               <Typography color="textSecondary" gutterBottom>
                 Postagens
@@ -64,8 +77,9 @@ function ListaPostagem() {
               </Typography>
             </CardContent>
             <CardActions>
-              {postagem.usuario?.id === +userId ? (
-                <Box display="flex" justifyContent="center" mb={1.5}>
+            
+            {postagem.usuario?.id === +userId ? (
+              <Box display="flex" justifyContent="center" mb={1.5}>
                   <Link
                     to={`/editarPost/${postagem.id}`}
                     className="text-decoration-none"
@@ -91,13 +105,40 @@ function ListaPostagem() {
                     </Box>
                   </Link>
                 </Box>
-              ) : (
-                <></>
-              )}
+            ) : (
+              <Box display="flex" justifyContent="center" mb={1.5}>
+                  
+                    <Box mx={1}>
+                      <Button variant="contained" size="small" color="primary" disabled>
+                        atualizar
+                      </Button>
+                    </Box>
+                  
+                    <Box mx={1}>
+                      <Button
+                        variant="contained"
+                        size="small"
+                        color="secondary"
+                        disabled
+                      >
+                        deletar
+                      </Button>
+                    </Box>
+                  
+                </Box>
+            )}
+
+                
+            
             </CardActions>
           </Card>
         </Box>
-      ))}
+      ))
+    )}
+
+    {/* {filteredList.map((post) => (
+      // <p>{post.titulo}</p>
+    ))} */}
     </>
   );
 }

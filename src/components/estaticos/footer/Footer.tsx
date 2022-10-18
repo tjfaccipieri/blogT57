@@ -78,7 +78,7 @@ function Footer() {
           </Typography>
         </Box>
         <Box>
-          <a target="_blank" href="https://brasil.generation.org">
+          <a target="_blank" href="https://brasil.generation.org" rel="noreferrer">
             <Typography
               variant="subtitle2"
               style={{ color: 'white' }}

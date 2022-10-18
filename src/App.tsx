@@ -16,14 +16,16 @@ import store from './store/store';
 import Perfil from './components/perfil/Perfil';
 import { ToastContainer } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
+import { useState } from 'react';
 
 function App() {
+  const [inputText, setInputText] = useState("");
   return (
     <Provider store={store}>
       <BrowserRouter>
       <ToastContainer />
       
-      <Navbar />
+      <Navbar setInputText={setInputText} />
 
       <div style={{minHeight: '80vh'}}>
         <Routes>
@@ -31,7 +33,7 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/cadastro" element={<CadastroUsuario />} />
 
-          <Route path="/home" element={<Home />} />
+          <Route path="/home" element={<Home  />} />
           <Route path="/perfil" element={<Perfil />} />
 
           <Route path="/temas" element={<ListaTemas />} />
@@ -39,7 +41,7 @@ function App() {
           <Route path="/atualizarTema/:id" element={<CadastroTema />} />
           <Route path="/apagarTema/:id" element={<DeletarTema />} />
 
-          <Route path="/posts" element={<ListaPostagem />} />
+          <Route path="/posts" element={<ListaPostagem inputText={inputText} />} />
           <Route path="/editarPost/:id" element={<CadastroPostagem />} />
           <Route path="/apagarPost/:id" element={<DeletarPostagem />} />
         </Routes>

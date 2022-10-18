@@ -20,6 +20,7 @@ function CadastroTema() {
   const [tema, setTema] = useState<Tema>({
     id: 0,
     descricao: '',
+    postagem: null
   });
 
   useEffect(() => {
@@ -109,6 +110,15 @@ function CadastroTema() {
           </Box>
         </form>
       </Container>
+
+      {tema.postagem?.map((post)=> (
+        <>
+          <p>{post.titulo}</p>
+          <p>{post.usuario?.nome}</p>
+          
+        </>
+      ))}
+
     </>
   );
 }

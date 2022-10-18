@@ -1,4 +1,5 @@
-import { Typography, Button } from '@material-ui/core';
+import { Typography, Button, Hidden, InputAdornment } from '@material-ui/core';
+import { AccountCircle } from '@material-ui/icons';
 import { Box, Grid, TextField } from '@mui/material';
 import React, { ChangeEvent, useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
@@ -11,8 +12,8 @@ import './Login.css';
 
 function Login() {
   let navigate = useNavigate();
-  const dispatch = useDispatch()
-  const [token, setToken] = useState('')
+  const dispatch = useDispatch();
+  const [token, setToken] = useState('');
 
   const [userLogin, setUserLogin] = useState<UsuarioLogin>({
     id: 0,
@@ -22,7 +23,7 @@ function Login() {
     foto: '',
     token: '',
   });
-  
+
   const [respUserLogin, setRespUserLogin] = useState<UsuarioLogin>({
     id: 0,
     nome: '',
@@ -40,12 +41,16 @@ function Login() {
   }
 
   useEffect(() => {
-    if(userLogin.usuario !== '' && userLogin.senha !== '' && userLogin.senha.length >= 8) {
-      setForm(true)
+    if (
+      userLogin.usuario !== '' &&
+      userLogin.senha !== '' &&
+      userLogin.senha.length >= 8
+    ) {
+      setForm(true);
     }
-  },[userLogin])
+  }, [userLogin]);
 
-  const [form, setForm] = useState(false)
+  const [form, setForm] = useState(false);
 
   async function conectar(event: ChangeEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -54,32 +59,34 @@ function Login() {
       toast.success('Usuario conectado. tamo juntão', {
         theme: 'colored',
         autoClose: 2000,
-        hideProgressBar: true
-      })
+        hideProgressBar: true,
+      });
     } catch (error) {
       toast.error(`Deu ruim.`, {
         theme: 'colored',
         autoClose: 2000,
-        hideProgressBar: true
-      })
+        hideProgressBar: true,
+      });
     }
   }
 
   useEffect(() => {
     if (token !== '') {
-      dispatch(addToken(token))
+      dispatch(addToken(token));
       navigate('/home');
     }
   }, [token]);
 
   //metodo para pegar o token e o id do json e guardar no redux
-  useEffect(()=> {
-    if(respUserLogin.token !== ''){
-      dispatch(addToken(respUserLogin.token))
-      dispatch(addId(respUserLogin.id.toString()))
+  useEffect(() => {
+    if (respUserLogin.token !== '') {
+      dispatch(addToken(respUserLogin.token));
+      dispatch(addId(respUserLogin.id.toString()));
       navigate('/home');
     }
-  }, [respUserLogin.token])
+  }, [respUserLogin.token]);
+
+
 
   return (
     <>
@@ -89,7 +96,7 @@ function Login() {
         alignItems="center"
         justifyContent="center"
       >
-        <Grid item xs={6} alignItems="center" justifyContent="center">
+        <Grid item xs={12} md={6} alignItems="center" justifyContent="center">
           <Box paddingX={20}>
             <form onSubmit={conectar}>
               <Typography variant="h2" align="center">
@@ -106,7 +113,8 @@ function Login() {
                 label="Usuário"
                 fullWidth
                 margin="normal"
-                variant='outlined'
+                variant="outlined"
+                className="teste"
               />
               <TextField
                 onChange={(event: ChangeEvent<HTMLInputElement>) =>
@@ -121,8 +129,15 @@ function Login() {
                 fullWidth
                 margin="normal"
               />
+
+
               <Box display="flex" justifyContent="center" marginTop={2}>
-                <Button type="submit" variant="contained" color="primary" disabled={!form}>
+                <Button
+                  type="submit"
+                  variant="contained"
+                  color="primary"
+                  disabled={!form}
+                >
                   Entrar
                 </Button>
               </Box>
@@ -143,7 +158,12 @@ function Login() {
           </Box>
         </Grid>
 
-        <Grid item xs={6} className="bg-login"></Grid>
+        <Grid
+          item
+          md={6}
+          className="bg-login"
+          display={{ xs: 'none', md: 'block' }}
+        ></Grid>
       </Grid>
     </>
   );
