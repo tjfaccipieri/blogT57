@@ -25,9 +25,9 @@ function ListaPostagem(props: any) {
 
   const userId = useSelector<TokenState, TokenState['id']>((state) => state.id);
 
-  let filter = props.inputText
+  // let filter = props.inputText
 
-    console.log()
+  //   console.log()
 
   
 
@@ -49,14 +49,16 @@ function ListaPostagem(props: any) {
     getPostagem();
   }, [postagens.length]);
 
+  // .filter((post) => {
+  //   return(
+  //     post.titulo.includes(filter)
+  //   )
+  // })
+
   return (
     <>
     {postagens.length === 0 ? (<div className="spinner"></div>): (
-      postagens.filter((post) => {
-        return(
-          post.titulo.includes(filter)
-        )
-      }).map((postagem) => (
+      postagens.map((postagem) => (
         <Box marginX={20} m={2} key={postagem.id} className='boxPost' border={1} borderRadius={5} justifySelf='flex-start'>
           <Card className='cardPost'>
             <CardContent>

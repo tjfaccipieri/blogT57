@@ -13,11 +13,11 @@ function Navbar(props: any) {
     (state) => state.tokens
   );
 
-  let handleFilter = (event: any) => {
-    let lowerCase = event.target.value.toLowerCase()
-    props.setInputText(lowerCase)
-    console.log(lowerCase)
-  }
+  // let handleFilter = (event: any) => {
+  //   let lowerCase = event.target.value.toLowerCase()
+  //   props.setInputText(lowerCase)
+  //   console.log(lowerCase)
+  // }
 
   function goLogout() {
     dispatch(addToken(''));
@@ -37,9 +37,9 @@ function Navbar(props: any) {
           </Typography>
         </Box>
         <Grid container justifyContent="flex-end">
-          <Box>
+          {/* <Box>
             <input type="search" placeholder='Pesquise aqui' onChange={handleFilter} />
-          </Box>
+          </Box> */}
           <Box display="flex" justifyContent="start">
             <Box mx={1} className="cursor">
               <Link to="/home" className="navLink">
