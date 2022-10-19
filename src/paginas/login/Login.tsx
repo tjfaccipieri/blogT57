@@ -100,7 +100,7 @@ function Login() {
           <Box paddingX={20}>
             <form onSubmit={conectar}>
               <Typography variant="h2" align="center">
-                Entrar
+                Entrar no blog pessoal do Thiago
               </Typography>
 
               <TextField
